@@ -289,10 +289,31 @@ details.era-fold > .tl { margin: 0 20px 20px; }
 .case-body { clear: both; }
 @media (max-width: 700px) { .teaser-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .teaser-tiles .tile { padding: 10px; } .teaser-tiles .tile b { font-size: 20px; } .teaser-tiles .tile span { font-size: 11px; line-height: 1.3; display: block; } }
 @media (max-width: 700px) { .proof .cred-full { display: none; } .proof .cred { padding: 12px 14px; } .proof .cred-meta { margin-top: 6px; } }
-@media (max-width: 700px) { .thumb { float: none; display: block; width: 100%; aspect-ratio: 16 / 9; margin: 0 0 16px; } }
+@media (max-width: 700px) { .thumb { width: 84px; aspect-ratio: 1 / 1; margin: 0 0 8px 12px; } .case.open .thumb { display: none; } }
 .quote small { display: block; margin-top: 8px; font: 400 13px var(--font-sans); font-style: normal; color: var(--dbs-muted); }
 .mist .card { display: flex; flex-direction: column; }
 .mist .card .more { display: inline-flex; align-items: center; min-height: 44px; margin-top: auto; padding-top: 8px; color: var(--dbs-gold-bright); font-weight: 700; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
+/* Mobile: compact stories, about fold, short mistakes, sticky contact bar */
+.more-stories { display: block; margin: 24px auto 0; }
+.mfold > summary { margin-top: 8px; }
+@media (min-width: 701px) { .mfold > summary { display: none; } details.mfold { margin-top: 0; } }
+.mcta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; display: flex; padding: 8px 16px calc(8px + env(safe-area-inset-bottom, 0px)); background: rgba(11,12,14,.96); border-top: 1px solid var(--dbs-line); }
+.mcta .btn { flex: 1; }
+html.menu-open .mcta { display: none; }
+@media (max-width: 700px) {
+  .case { margin-top: 16px; }
+  .case:not(.open) .case-head { display: none; }
+  .case:not(.open) .intro { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; }
+  .teaser-tiles { display: none !important; }
+  .teaser { padding: 10px 12px; font-size: 14px; margin-bottom: 12px; }
+  #about .grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  #about .grid4 .card { padding: 14px; }
+  #about .grid4 .card p { display: none; }
+  #about .grid4 .card h3 { font-size: 15px; margin: 0; }
+  #about .grid4 .card .n { margin-bottom: 8px; }
+  .mist .card > h3 + p { display: none; }
+  footer { padding-bottom: 72px; }
+}
 </style>
 </head>
 <body>
@@ -456,20 +477,13 @@ details.era-fold > .tl { margin: 0 20px 20px; }
     <p class="kicker">About me</p>
     <h2>Why I do it, and how I <span class="acc">show up</span></h2>
     <p class="lede">I'm curious by nature and I learn by doing. Whatever I learn at work ends up at home, and the other way round. It all goes back to something my dad told us growing up.</p>
+    <p class="quote">Anything is possible. My dad made sure we heard it, and I've been testing it ever since.</p>
     <ol class="flow" style="margin-top:28px" aria-label="How I work">
       <li>Curious<small>I keep asking what else is possible</small></li>
       <li>Learn by doing<small>I try it for real, not just read about it</small></li>
       <li>Apply<small>I use it at work and at home</small></li>
       <li>Connect<small>Work and life feed each other</small></li>
     </ol>
-    <h3 class="sub-h">The story behind the why</h3><div class="arc">
-      <div class="blk"><p class="kicker">Where it started</p><p>My dad always told us that anything is possible. I didn't think of it as a mindset back then; it was just how we were raised to look at a problem.</p></div>
-      <div class="blk"><p class="kicker">The turning point</p><p>Years ago, at a four-day Tony Robbins event, I walked across hot coals. It changed my question from "what's stopping me?" to "what else is possible?", and I still ask it today.</p></div>
-      <div class="blk"><p class="kicker">How I use it</p><p>When something scares me, I lean into it and learn from it. That's how the rickshaw run, the Everest trek and Pass With Confidence all began.</p></div>
-      <div class="blk"><p class="kicker">Where it leads</p><p>Growing stronger and more connected to the people around me as the years add up, and giving back along the way.</p></div>
-    </div>
-    <p class="quote">Anything is possible. My dad made sure we heard it, and I've been testing it ever since.</p>
-
     <h3 class="sub-h" id="how">Four habits behind the work</h3>
     <p class="lede">I don't stay in one lane. My best results have come from seeing how the pieces fit together before anyone started building.</p>
     <div class="grid4" style="margin-top:20px">
@@ -478,8 +492,16 @@ details.era-fold > .tl { margin: 0 20px 20px; }
       <div class="card"><span class="n">3</span><h3>Learn alongside the doers</h3><p>Standing next to people who are already doing the thing teaches me faster than any book. I look for rooms that stretch me.</p></div>
       <div class="card"><span class="n">4</span><h3>Try small, write it down</h3><p>I try things in small steps, keep the lesson, and write down what works so I never have to solve the same problem twice.</p></div>
     </div>
+    <details class="fold mfold" id="about-more"><summary>Read the story behind the why</summary>
+    <h3 class="sub-h">The story behind the why</h3><div class="arc">
+      <div class="blk"><p class="kicker">Where it started</p><p>My dad always told us that anything is possible. I didn't think of it as a mindset back then; it was just how we were raised to look at a problem.</p></div>
+      <div class="blk"><p class="kicker">The turning point</p><p>Years ago, at a four-day Tony Robbins event, I walked across hot coals. It changed my question from "what's stopping me?" to "what else is possible?", and I still ask it today.</p></div>
+      <div class="blk"><p class="kicker">How I use it</p><p>When something scares me, I lean into it and learn from it. That's how the rickshaw run, the Everest trek and Pass With Confidence all began.</p></div>
+      <div class="blk"><p class="kicker">Where it leads</p><p>Growing stronger and more connected to the people around me as the years add up, and giving back along the way.</p></div>
+    </div>
     <h3 class="sub-h">Outside the desk</h3>
     <ul class="achs"><li class="ach"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><g stroke="var(--dbs-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M4 33L15 12l6 10 5-7 10 18z"/><path d="M12.5 17l2.5 3 3-3"/></g></svg><b class="ach-val">Everest Base Camp</b><span class="ach-label">Trekked via the Chola Pass</span><span class="ach-sub">A long held goal</span></li><li class="ach"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><g stroke="var(--dbs-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="9" cy="31" r="3.5"/><circle cx="31" cy="9" r="3.5"/><path d="M9 27.5c0-9 10-6 13-10s-1-8 5-8"/></g></svg><b class="ach-val">2,100 km</b><span class="ach-label">Rickshaw Run, northern India</span><span class="ach-sub">108 people, GBP 750k+ for SEWA UK</span></li><li class="ach"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><g stroke="var(--dbs-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="10" cy="27" r="6"/><circle cx="30" cy="27" r="6"/><path d="M10 27l7-12h8l5 12M17 15l-2-4h-4M22 27l3-12"/></g></svg><b class="ach-val">350 km</b><span class="ach-label">Charity road ride</span><span class="ach-sub">Three days in the saddle. Signed up next: 400 km at Easter 2027</span></li><li class="ach"><svg class="ico" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><g stroke="var(--dbs-gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="3"/><path d="M6 20h11M23 20h11M20 23v11"/></g></svg><b class="ach-val">2026</b><span class="ach-label">Certified driving instructor</span><span class="ach-sub">Launched Pass With Confidence</span></li></ul>
+    </details>
   </section>
 
   <section id="experience">
@@ -535,6 +557,7 @@ details.era-fold > .tl { margin: 0 20px 20px; }
     <span>linkedin.com/in/spatel82</span>
   </footer>
 </main>
+<div class="mcta" id="mcta" hidden><a class="btn btn-primary" href="https://www.linkedin.com/in/spatel82" target="_blank" rel="noopener">Message me on LinkedIn</a></div>
 
 <script>
 (function () {
@@ -616,7 +639,7 @@ details.era-fold > .tl { margin: 0 20px 20px; }
   function setOpen(c, open) {
     var b = c.querySelector('.case-toggle'), body = c.querySelector('.case-body');
     if (!b || !body) return;
-    body.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    body.hidden = !open; b.setAttribute('aria-expanded', open ? 'true' : 'false'); c.classList.toggle('open', open);
     var pv = c.querySelector('.teaser-tiles'); if (pv) pv.hidden = open;
     b.textContent = open ? 'Hide the full story' : 'Read the full story';
   }
@@ -625,12 +648,20 @@ details.era-fold > .tl { margin: 0 20px 20px; }
     var v = visible(); var allOpen = v.length > 0 && v.every(function (c) { return !c.querySelector('.case-body').hidden; });
     allBtn.textContent = allOpen ? 'Collapse all stories' : 'Expand all stories';
   }
+  var featured = ['pipeline', 'pwc', 'rickshaw'], showMore = false, cur = 'all';
+  var narrow = window.matchMedia('(max-width: 700px)');
+  var moreBtn = document.createElement('button'); moreBtn.type = 'button'; moreBtn.className = 'case-toggle more-stories';
+  moreBtn.textContent = 'Show ' + (cases.length - featured.length) + ' more stories';
+  cases[cases.length - 1].after(moreBtn);
+  moreBtn.addEventListener('click', function () { showMore = true; applyFilter(cur); var next = cases.filter(function (c) { return featured.indexOf(c.id) < 0; })[0]; if (next) next.querySelector('.case-toggle').focus(); });
   function applyFilter(t) {
-    var n = 0;
+    var n = 0; cur = t;
+    var trim = t === 'all' && narrow.matches && !showMore;
     cases.forEach(function (c) {
-      var ok = t === 'all' || (c.getAttribute('data-themes') || '').split(' ').indexOf(t) > -1;
+      var ok = (t === 'all' || (c.getAttribute('data-themes') || '').split(' ').indexOf(t) > -1) && !(trim && featured.indexOf(c.id) < 0);
       c.hidden = !ok; if (ok) n++;
     });
+    moreBtn.hidden = !trim;
     chips.forEach(function (ch) { ch.setAttribute('aria-pressed', ch.getAttribute('data-theme') === t ? 'true' : 'false'); });
     count.textContent = 'Showing ' + n + ' of ' + cases.length + ' stories: ' + names[t] + '.';
     syncAll();
@@ -658,7 +689,7 @@ details.era-fold > .tl { margin: 0 20px 20px; }
   });
   function reveal(id) {
     var t = document.getElementById(id); if (!t) return;
-    if (t.classList.contains('case')) { if (t.hidden) applyFilter('all'); setOpen(t, true); syncAll(); }
+    if (t.classList.contains('case')) { if (t.hidden) { showMore = true; applyFilter('all'); } setOpen(t, true); syncAll(); }
     else if (t.tagName === 'DETAILS') { t.open = true; }
     else { var f = t.querySelector('details.fold'); if (f && t.id !== 'stories') { /* leave sections as authored */ } }
   }
@@ -668,6 +699,18 @@ details.era-fold > .tl { margin: 0 20px 20px; }
   });
   window.addEventListener('hashchange', function () { reveal(location.hash.slice(1)); });
   if (window.matchMedia('(min-width: 861px)').matches) { [].forEach.call(document.querySelectorAll('details.era-fold'), function (d) { d.open = true; }); }
+  if (narrow.addEventListener) narrow.addEventListener('change', function () { applyFilter(cur); syncMore(); });
+  var aboutMore = document.getElementById('about-more');
+  function syncMore() { if (aboutMore) aboutMore.open = !narrow.matches; }
+  syncMore();
+  var bar = document.getElementById('mcta'), heroEl = document.querySelector('.hero'), connectEl = document.getElementById('connect');
+  if (bar && heroEl && connectEl && 'IntersectionObserver' in window) {
+    var pastHero = false, atConnect = false;
+    function syncBar() { bar.hidden = !(narrow.matches && pastHero && !atConnect); }
+    new IntersectionObserver(function (es) { pastHero = !es[0].isIntersecting; syncBar(); }).observe(heroEl);
+    new IntersectionObserver(function (es) { atConnect = es[0].isIntersecting; syncBar(); }).observe(connectEl);
+    if (narrow.addEventListener) narrow.addEventListener('change', syncBar);
+  }
   applyFilter('all');
   if (location.hash.length > 1) reveal(location.hash.slice(1));
 })();
