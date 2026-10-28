@@ -301,7 +301,7 @@ details.era-fold > .tl { margin: 0 20px 20px; }
       <ul>
         <li class="has-sub"><a href="#stories">Stories</a><button class="caret" id="caretBtn" aria-expanded="false" aria-controls="subNav" aria-label="Show story pages">&#9662;</button>
           <ul class="sub" id="subNav" hidden>
-            <li class="grp">AI and builds</li><li><a href="#pipeline">AI sprint pipeline</a></li><li><a href="#app">Instructor app: what broke</a></li>
+            <li class="grp">AI and builds</li><li><a href="#pipeline">AI as a project team</a></li><li><a href="#app">Instructor app: what broke</a></li>
             <li class="grp">BA craft and communication</li><li><a href="#batoolkit">BA toolkit</a></li><li><a href="#writing">LinkedIn writing</a></li>
             <li class="grp">Leadership and delivery</li><li><a href="#pwc">Pass With Confidence</a></li><li><a href="#rickshaw">Rickshaw run</a></li>
             <li class="grp">Coaching and growth</li><li><a href="#teach">How I teach</a></li><li><a href="#wheel">Wheel of life</a></li><li><a href="#rnt">RNT fitness journey</a></li>
@@ -361,36 +361,37 @@ details.era-fold > .tl { margin: 0 20px 20px; }
 
     <article class="case" id="pipeline">
       <div class="case-head"><span class="chip">AI orchestration</span><span class="chip">Claude skills</span><span class="chip">Governance</span></div>
-      <h3>An AI sprint pipeline with five roles and a blocking gate</h3>
-      <p class="intro">One brief goes in. Analyst, designer, developer, tester and reviewer each do their part in order, and I only step in at the escalation points and the final sign off.</p>
-      <ol class="flow" aria-label="Pipeline stages">
-        <li class="gate">Discovery gate<small>Is this ready to start?</small></li>
-        <li>BA<small>Stories and acceptance criteria</small></li>
-        <li>UX<small>Spec for any UI change</small></li>
-        <li>Dev<small>Build and self review</small></li>
-        <li>QA<small>Test against criteria</small></li>
-        <li class="gate">Governance<small>Blocking audit, then sign off</small></li>
+      <h3>Teaching AI to work like a project team</h3>
+      <p class="intro">I kept hearing that AI would replace analysts, testers and delivery leads, so I wanted to find out for myself. I set AI up like a small project team (an analyst, a designer, a developer, a tester and a reviewer), each handing work to the next. I step in where judgement matters, and nothing ships without my sign-off.</p>
+      <ol class="flow" aria-label="How the team works">
+        <li class="gate">Ready check<small>Is this ready to start?</small></li>
+        <li>Analyst<small>Stories and what "done" looks like</small></li>
+        <li>Designer<small>Specs any screen change</small></li>
+        <li>Developer<small>Builds it and checks its own work</small></li>
+        <li>Tester<small>Tests against "done"</small></li>
+        <li class="gate">Reviewer<small>Checks everything, then I sign off</small></li>
       </ol>
       <div class="arc">
-        <div class="blk"><p class="kicker">The problem</p><p>Working with AI one prompt at a time meant re explaining context at every step. Each role lived in a separate chat, quality depended on my energy, and nothing stopped weak work from reaching sign off.</p></div>
-        <div class="blk"><p class="kicker">What I did</p><p>Built each role as a reusable Claude skill file with clear triggers, inputs and handoffs. Added a discovery gate at the front, a governance audit at the back, and an orchestrator that runs the chain and only comes to me when it must.</p></div>
-        <div class="blk good"><p class="kicker">What worked</p><ul><li>A signed off set of stories that every later role builds against</li><li>Governance as a gate that returns drift to the right role</li><li>Brand rules packaged inside the skills so output stays consistent</li></ul></div>
-        <div class="blk bad"><p class="kicker">What did not</p><ul><li>Early on I activated each role by hand, and roles drifted apart without a shared source of truth</li><li>Agents read content from tools and the web, which is an injection risk I had to design for</li></ul></div>
-        <div class="blk" style="grid-column: 1 / -1"><p class="kicker">Lessons learned</p><ul><li>The gate matters more than the generator.</li><li>Define done for each role before you automate it.</li><li>Treat anything an agent reads as data, never as an instruction.</li><li>Package what works so you never rebuild it.</li></ul></div>
+        <div class="blk"><p class="kicker">The problem</p><p>At first I used AI one chat at a time. Every new conversation meant explaining the whole project again, the quality depended on how tired I was that evening, and nothing stopped a weak answer slipping through.</p></div>
+        <div class="blk"><p class="kicker">What I did</p><p>I gave each role its own written playbook that says when it starts, what it needs and what it hands on. I added a "ready to start?" check at the front and a reviewer at the end who can send work back. A coordinator runs the chain and only comes to me when a decision is genuinely mine.</p></div>
+        <div class="blk good"><p class="kicker">What worked</p><ul><li>Agreeing the stories up front, so every role builds from the same picture</li><li>A reviewer with the power to send work back to whoever got it wrong</li><li>Writing my brand rules into the playbooks, so everything looks and sounds consistent</li></ul></div>
+        <div class="blk bad"><p class="kicker">What did not</p><ul><li>At first I switched roles by hand, and without one shared source of truth they slowly drifted apart</li><li>AI reads text from websites and documents, and some of that text can try to give it instructions. I had to design for that from day one</li></ul></div>
+        <div class="blk" style="grid-column: 1 / -1"><p class="kicker">Lessons learned</p><ul><li>The check matters more than the speed.</li><li>Agree what "done" means for each role before you automate it.</li><li>Treat anything AI reads as information, never as an instruction.</li><li>When something works, write it down so you never have to rebuild it.</li></ul></div>
       </div>
       <div class="result">
         <p class="kicker">The result</p>
         <div class="ba">
-          <div><b>Before</b>Manual role switching, repeated context, no formal quality gate.</div>
+          <div><b>Before</b>Switching roles by hand, repeating myself, and no real quality check.</div>
           <div class="arrow" aria-hidden="true">&rarr;</div>
-          <div class="after"><b>After</b>One brief in, one sign off out, with an audit in between.</div>
+          <div class="after"><b>After</b>One brief in, one sign-off out, with a proper review in between.</div>
         </div>
         <div class="tiles">
-          <div class="tile"><b>5</b><span>defined roles with handoffs</span></div>
-          <div class="tile"><b>1</b><span>blocking governance gate</span></div>
-          <div class="tile"><b>3</b><span>packaged skill files I can reuse</span></div>
+          <div class="tile"><b>5</b><span>roles that hand work to each other</span></div>
+          <div class="tile"><b>1</b><span>reviewer that can say no</span></div>
+          <div class="tile"><b>5</b><span>reusable playbooks</span></div>
         </div>
       </div>
+      <p class="why"><b>Connects to my why:</b> AI did the legwork. Judgement, and knowing when to say no, stayed with me.</p>
     </article>
     <article class="case" id="app"><div class="case-head"><span class="chip">Engineering</span><span class="chip">Quality</span><span class="chip">Hosting</span></div><h3>Building the Pass With Confidence instructor app, and what broke</h3><p class="intro">A web app for tracking students, lessons and progress, built through my own five role AI pipeline. This story is mostly the failures, because that is where the learning was.</p><ol class="flow" aria-label="Build path"><li>Stories<small>BA writes, I sign off</small></li><li>Build<small>Node 22 with built in SQLite</small></li><li class="gate">Verify<small>Live browser QA</small></li><li>Deploy<small>Push to GitHub, automatic release</small></li></ol><div class="arc"><div class="blk"><p class="kicker">The problem</p><p>Lesson notes, progress and family recaps need to live in one reliable place, and the data has to survive deployments, restarts and mistakes.</p></div><div class="blk"><p class="kicker">What I did</p><p>Built the app in sprints, with each AI role handing to the next. I chose the database built into Node 22 to avoid native build steps, wrote one refresh function that every status change routes through, and made live browser checks part of QA.</p></div><div class="blk good"><p class="kicker">What worked</p><ul><li>Live browser QA that reads console errors and calls the new functions, instead of only reading code</li><li>A syntax check before any file is delivered</li><li>Validating a backup file fully before any data is touched</li></ul></div><div class="blk bad"><p class="kicker">What did not</p><ul><li>Old copies of markup sat inside dead code strings, so searching for an element returned false matches while the live markup was further down the file</li><li>Two common logout tricks failed for basic authentication, and a short lived cookie marker fixed it</li><li>Attaching storage over existing data on redeploy risked losing that data</li></ul></div><div class="blk" style="grid-column: 1 / -1"><p class="kicker">Lessons learned</p><ul><li>Reading code is a fallback for testing, never a substitute</li><li>Check where an edit lands by position in the file, not by search</li><li>Prove data persistence before you migrate anything else</li><li>Reject bad input at the door, before it can change data</li></ul></div></div><div class="result"><p class="kicker">The result</p><div class="ba"><div><b>Before</b>Progress and recaps rebuilt by hand after each lesson.</div><div class="arrow" aria-hidden="true">&rarr;</div><div class="after"><b>After</b>One app for students, lessons and progress, with checks that catch breakage before I do.</div></div><div class="tiles"><div class="tile"><b>5</b><span>roles in the build pipeline</span></div><div class="tile"><b>3</b><span>failure patterns now written down as rules</span></div><div class="tile"><b>0</b><span>native compile steps to maintain</span></div></div></div><p class="why"><b>Connects to my why:</b> I learn by doing, then write the lesson down so it sticks.</p></article>
     <article class="case" id="batoolkit"><div class="case-head"><span class="chip">BA craft</span><span class="chip">Frameworks</span><span class="chip">Infographics</span></div><h3>My BA toolkit: frameworks I can hand to anyone</h3><p class="intro">A personal library of one page visuals that explain how work flows. I use it for learning, interview preparation and, in time, lessons for others.</p><p class="kicker" style="margin-bottom:12px">The library</p><div class="grid4" style="margin:0 0 24px">
