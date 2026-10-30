@@ -314,9 +314,17 @@ html.menu-open .mcta { display: none; }
   .mist .card > h3 + p { display: none; }
   footer { padding-bottom: 72px; }
 }
+/* Gentle scroll reveal and progress line (switched off for reduced motion) */
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 30; background: var(--dbs-gold); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html.js-reveal .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; transition-delay: var(--rd, 0s); }
+  html.js-reveal .reveal.in { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .scroll-progress { display: none; } }
 </style>
 </head>
 <body>
+<div class="scroll-progress" aria-hidden="true"></div>
 <header class="top">
   <div class="wrap">
     <a class="dbs-tag" href="#top">Sunny Patel</a>
@@ -713,6 +721,43 @@ html.menu-open .mcta { display: none; }
   }
   applyFilter('all');
   if (location.hash.length > 1) reveal(location.hash.slice(1));
+})();
+</script>
+<script>
+(function () {
+  var bar = document.querySelector('.scroll-progress');
+  var ticking = false;
+  function progress() {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(progress); } }, { passive: true });
+  window.addEventListener('resize', progress); progress();
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var sel = 'main section > .kicker, main section > h2, main section > .lede, .proof .cred, .proof .stat, .case, .grid4 > .card, .mist > .card, .flow > li, .achs > li, .tl > li, .faq > details, .connect';
+  var els = [].slice.call(document.querySelectorAll(sel));
+  els.forEach(function (el) {
+    el.classList.add('reveal');
+    var sibs = el.parentElement ? [].slice.call(el.parentElement.children).filter(function (c) { return c.matches(sel); }) : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.setProperty('--rd', Math.min(i, 4) * 0.08 + 's');
+  });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+  els.forEach(function (el) { io.observe(el); });
+  function reset(root) {
+    [].forEach.call(root.querySelectorAll('.reveal.in'), function (el) { el.classList.remove('in'); io.observe(el); });
+  }
+  [].forEach.call(document.querySelectorAll('details'), function (d) {
+    d.addEventListener('toggle', function () { if (!d.open) reset(d); });
+  });
+  var mo = new MutationObserver(function (ms) {
+    ms.forEach(function (m) { if (m.target.hidden) reset(m.target); });
+  });
+  [].forEach.call(document.querySelectorAll('.case-body'), function (b) { mo.observe(b, { attributes: true, attributeFilter: ['hidden'] }); });
+  document.documentElement.classList.add('js-reveal');
 })();
 </script>
 <script data-goatcounter="https://sunnyp.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
