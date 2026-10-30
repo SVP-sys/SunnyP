@@ -747,6 +747,16 @@ html.menu-open .mcta { display: none; }
     es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
   els.forEach(function (el) { io.observe(el); });
+  function reset(root) {
+    [].forEach.call(root.querySelectorAll('.reveal.in'), function (el) { el.classList.remove('in'); io.observe(el); });
+  }
+  [].forEach.call(document.querySelectorAll('details'), function (d) {
+    d.addEventListener('toggle', function () { if (!d.open) reset(d); });
+  });
+  var mo = new MutationObserver(function (ms) {
+    ms.forEach(function (m) { if (m.target.hidden) reset(m.target); });
+  });
+  [].forEach.call(document.querySelectorAll('.case-body'), function (b) { mo.observe(b, { attributes: true, attributeFilter: ['hidden'] }); });
   document.documentElement.classList.add('js-reveal');
 })();
 </script>
