@@ -384,6 +384,34 @@ html.menu-open .mcta { display: none; }
 .try-demo { margin-top: 4px; }
 .try-demo a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; border: 1px solid var(--dbs-gold); border-radius: 999px; color: var(--dbs-gold-bright); font-weight: 700; font-size: 15px; text-decoration: none; }
 .try-demo a:hover { background: var(--dbs-gold-tint); }
+/* AI I use to run my week */
+.aiweek { margin-top: 32px; padding: clamp(18px, 3vw, 28px); background: var(--dbs-surface); border: 1px solid var(--dbs-gold); border-radius: 12px; display: grid; gap: 12px; }
+.aiweek .kicker { margin: 0; }
+.aiweek-h { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; }
+.aiweek-grid { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 760px) { .aiweek-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; } }
+.aiw-card { background: var(--dbs-surface-2); border: 1px solid var(--dbs-line); border-radius: 12px; padding: 18px; display: grid; gap: 10px; min-width: 0; }
+.aiw-card h4 { margin: 0; font-size: 19px; font-weight: 800; }
+.aiw-card > p, .aiw-built { color: var(--dbs-ink-soft); font-size: 15px; margin: 0; }
+.aiw-k, .aiw-sub { font-size: 11px !important; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dbs-gold) !important; }
+.aiw-guard { border-left: 2px solid var(--dbs-gold); padding-left: 10px; font-size: 14px !important; }
+.aiw-built { padding-left: 18px; display: grid; gap: 4px; }
+.aiw-built li::marker { color: var(--dbs-gold); }
+.aiw-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--dbs-gold-bright); font-weight: 700; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
+details.aiw-fold { background: transparent; border: 0; }
+details.aiw-fold > summary { display: inline-flex; min-height: 44px; padding: 0 16px; border: 1px solid var(--dbs-gold); border-radius: 10px; font-weight: 800; font-size: 14px; gap: 12px; }
+details.aiw-fold[open] > summary { margin-bottom: 12px; }
+.aiw-demo { margin: 0; }
+.aiw-pri { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; counter-reset: p; }
+.aiw-pri li { counter-increment: p; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 12px; background: var(--pd-surface); border: 1px solid var(--pd-line); border-radius: 12px; padding: 12px; }
+.aiw-pri li::before { content: counter(p); grid-row: span 3; width: 30px; height: 30px; border-radius: 50%; background: var(--pd-gold); color: var(--pd-gold-ink); font-weight: 700; display: grid; place-items: center; }
+.aiw-pri li.picked { border-color: var(--pd-gold); box-shadow: 0 0 0 1px var(--pd-gold); }
+.aiw-pri span { color: var(--pd-soft); font-size: 13.5px; }
+.aiw-pri .aiw-tag { color: var(--pd-gold-b); font-size: 12px; font-weight: 600; }
+.aiw-pick { padding: 10px 12px; border: 1px solid var(--pd-gold); border-radius: 10px; background: var(--pd-tint); color: var(--pd-gold-b); font-weight: 600; margin: 0; }
+.pdemo .pd-card h4 { margin: 0 0 6px; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--pd-gold); }
+.pdemo .pd-card ul { margin: 0; padding-left: 18px; color: var(--pd-soft); }
+.aiw-drift { border-left: 3px solid #d97706; }
 </style>
 </head>
 <body>
@@ -457,6 +485,46 @@ html.menu-open .mcta { display: none; }
       </div>
       <div class="fbar"><p class="fcount" id="fcount" aria-live="polite"></p><button type="button" class="linkbtn" id="toggleAll">Expand all stories</button></div>
     </div>
+
+    <section class="aiweek" aria-labelledby="aiweekH">
+      <p class="kicker">Behind the scenes</p>
+      <h3 id="aiweekH" class="aiweek-h">AI I use to run my <span class="acc">week</span></h3>
+      <div class="aiweek-grid">
+        <div class="aiw-card">
+          <p class="aiw-k">Daily and weekly</p>
+          <h4>Morning huddle</h4>
+          <p>A huddle with myself before the day starts. It pulls my calendar, email and lesson voice notes into one page: three priorities, what to park, and a drift check that flags when I'm busy on the wrong things. A Monday brief does the same for the week ahead.</p>
+          <p>I've used it for a couple of months. It's how I stay focused when there are too many moving parts.</p>
+          <p class="aiw-guard"><b>Guardrails:</b> lesson recordings need consent, transcripts stay out of the page, and it only runs when I ask. I decide what happens next.</p>
+          <details class="aiw-fold"><summary>See a demo of the Today screen</summary>
+            <div class="pdemo aiw-demo" aria-label="Demo of the Morning huddle Today screen, with made up data">
+              <div class="pd-top"><div><div class="pd-word">Morning huddle</div><div class="pd-kick">Today</div></div><span class="pd-demo">Demo &middot; made up data</span></div>
+              <div class="pd-body">
+                <div><p class="pd-h1">Your <em>focus.</em></p><p class="pd-lead">A busy week: two lessons, a work deadline and ride training.</p></div>
+                <ol class="aiw-pri" id="aiw-pri">
+                  <li><b>Plan Thursday's lesson</b><span class="aiw-tag">Teaching &middot; 30 min</span><span>First step: pick two skills from the last snapshot.</span></li>
+                  <li><b>Send this week's lesson snapshots</b><span class="aiw-tag">Families &middot; 20 min</span><span>First step: check the summary from the latest voice note.</span></li>
+                  <li><b>Book two training rides</b><span class="aiw-tag">Health &middot; 15 min</span><span>First step: pick the mornings in the calendar.</span></li>
+                </ol>
+                <div><button type="button" class="pd-play aiw-dice" id="aiw-dice">&#127922; Can't decide? Pick for me</button></div>
+                <p class="aiw-pick" id="aiw-pick" aria-live="polite" hidden></p>
+                <div class="pd-card aiw-drift"><h4>Drift check</h4><ul><li>Three evenings this week went on admin, none on ride training.</li><li>Saturday's lesson notes haven't been processed yet.</li></ul></div>
+                <div class="pd-card"><h4>Parked for now</h4><ul><li>Website refresh, until after the next block of lessons.</li></ul></div>
+              </div>
+            </div>
+          </details>
+          <a class="aiw-link" href="#teach">See what families get: the progress replay</a>
+        </div>
+        <div class="aiw-card">
+          <p class="aiw-k">Every build</p>
+          <h4>The AI project team</h4>
+          <p>Five AI roles with written playbooks hand work to each other, a reviewer can send work back, and nothing ships without my sign off.</p>
+          <p class="aiw-sub">What it has built so far</p>
+          <ul class="aiw-built"><li>The instructor app</li><li>The Pass With Confidence hub behind the Morning huddle</li><li>Learners' progress pages</li><li>Two small business proofs of concept: a light CRM and a quoting tool</li></ul>
+          <a class="aiw-link" href="#pipeline">Read how the team works</a>
+        </div>
+      </div>
+    </section>
 
     <article class="case" id="pipeline">
       <div class="case-head"><span class="chip">AI in practice</span><span class="chip">Teamwork</span><span class="chip">Quality</span></div>
@@ -767,6 +835,7 @@ html.menu-open .mcta { display: none; }
       c.hidden = !ok; if (ok) n++;
     });
     moreBtn.hidden = !trim;
+    var aiw = document.querySelector('.aiweek'); if (aiw) aiw.hidden = !(t === 'all' || t === 'ai');
     chips.forEach(function (ch) { ch.setAttribute('aria-pressed', ch.getAttribute('data-theme') === t ? 'true' : 'false'); });
     count.textContent = 'Showing ' + n + ' of ' + cases.length + ' stories: ' + names[t] + '.';
     syncAll();
@@ -818,6 +887,21 @@ html.menu-open .mcta { display: none; }
   }
   applyFilter('all');
   if (location.hash.length > 1) reveal(location.hash.slice(1));
+})();
+</script>
+<script>
+(function () {
+  var btn = document.getElementById('aiw-dice'), list = document.getElementById('aiw-pri'), out = document.getElementById('aiw-pick');
+  if (!btn || !list || !out) return;
+  var last = -1;
+  btn.addEventListener('click', function () {
+    var items = list.children, n = items.length, i;
+    do { i = Math.floor(Math.random() * n); } while (n > 1 && i === last);
+    last = i;
+    [].forEach.call(items, function (li, k) { li.classList.toggle('picked', k === i); });
+    out.textContent = 'Start with: ' + items[i].querySelector('b').textContent + '. ' + items[i].querySelectorAll('span')[1].textContent;
+    out.hidden = false;
+  });
 })();
 </script>
 <script>
